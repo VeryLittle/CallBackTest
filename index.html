@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>CallBack Form</title>
+</head>
+<body>
+    <div class="container">
+		<h2>Форма обратной связи</h2>
+        <form 
+            id="contactForm"
+			@submit="checkForm"
+			action="assets/php/callback.php"
+  			method="POST"
+  			novalidate="true"
+		>
+			<div v-if="errors.length" class="field-block">
+				<b>Пожалуйста исправьте указанные ошибки:</b>
+				<ul>
+			  		<li v-for="error in errors">{{ error }}</li>
+				</ul>
+			</div>
+			<div v-if="response" class="field-block">
+				<b>{{ response }}</b>
+			</div>
+			<div class="field-block">
+				<label for="name">Ваше имя:</label>
+                <input v-model="f_name" id="name" class="field" name="name" required type="text" placeholder="Иван">
+			</div>
+			<div class="field-block">
+				<label for="phone">Ваш телефон:</label>
+				<input v-model="phone" id="phone" class="field" name="phone" required type="text" placeholder="+7 (800) 000-00-00">
+			</div>
+			<div class="field-block">
+				<label for="message">Текст сообщения:</label>
+				<textarea v-model="message" id="message" class="field" required name="message" rows="4"></textarea>
+			</div>
+			<button id="button" class="button" type="submit">Отправить</button>
+		</form>
+	</div>
+</body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="assets/js/app.js"></script>
+</html>
